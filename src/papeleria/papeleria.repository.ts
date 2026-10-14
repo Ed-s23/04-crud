@@ -17,6 +17,11 @@ export  class PapeleriaRepository{
     
    // private readonly papeleria = new Map<number,Papeleria>();
     //* Verificar que el id no exista en el bd
+
+    async  idExiste(id:number):Promise<boolean>{
+        const existe = await this.repo.countBy({id});
+        return existe > 0 ;
+    }
     // IdExist(id: number):boolean{
     //     //! Buscar como enlazar la bd 
     //     return this.papeleria.has(id) 
