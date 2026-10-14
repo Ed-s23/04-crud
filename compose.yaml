@@ -1,18 +1,43 @@
 # Use postgres/example user/password credentials
 
-services:
+serjvices:
 
-  db:
+  postgres:
     image: postgres
+    container_name: nest_postgres
     restart: always
-  
+   
     shm_size: 128mb
 
-    environment:
-      POSTGRES_PASSWORD: example
-
-  adminer:
-    image: adminer
-    restart: always
+    environment: 
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: contraseña
+      POSTGRES_DB: nest_bd
     ports:
-      - 8080:8080
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+
+  nes-app: 
+    build: .
+    container_name: nest_api
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USERNAME: postgres
+      DB_PASSWORD: contraseña
+      DB_NAME: nest_bd 
+
+volumes:
+  pgdata:
+  # adminer:
+  #   image: adminer
+  #   restart: always
+  #   ports:
+  #     - 8080:8080
+
