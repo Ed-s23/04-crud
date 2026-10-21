@@ -9,7 +9,7 @@ export class Papeleria {
     @Column({type: 'varchar', length: 50})
     name!: string;
 
-    @Column({  type: 'int', length: 10})
+    @Column({  type: 'int', })
     price: number;
     
     @Column({type: 'varchar', length:  100})

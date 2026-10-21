@@ -1,6 +1,6 @@
 # Use postgres/example user/password credentials
 
-serjvices:
+services:
 
   postgres:
     image: postgres
@@ -14,7 +14,7 @@ serjvices:
     ports:
       - "5432:5432"
     volumes:
-      - pgdata:/var/lib/postgresql/data
+      - pgdata:/var/lib/postgresql
 
 
   # nes-app: 
